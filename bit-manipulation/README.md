@@ -118,3 +118,142 @@ n | mask ==>
 00101101 (ith bit is set, no difference in n in this case)
 */
 ``````
+
+### Clear bit
+
+Clear a single bit in a specified position.
+```
+boolean clearBitOfPos(int n, int i) {
+    int mask = ~(1 << i);
+    return n & mask;
+}
+
+/*
+n = 00101101
+i = 3
+
+mask => 00001000 => 11110111
+n & mask ==>
+00101101
+11110111
+--------
+00100101 (ith bit is set to zero)
+
+
+n = 00101101
+i = 1
+
+mask => 00000010 => 11111101
+n & mask ==> 
+00101101
+11111101
+--------
+00101101 (ith bit is set, no difference in this case)
+*/
+``````
+
+Clear all bits from the most significant to an specified position (inclusive).
+```
+boolean clearBitFromMostSignificantToPos(int n, int i) {
+    int mask = (1 << i) - 1;
+    return n & mask;
+}
+
+/*
+n = 00101101
+i = 3
+
+mask => 00001000 => 00000111
+n & mask ==>
+00101101
+00000111
+--------
+00000101
+
+
+n = 00101101
+i = 1
+
+mask => 00000010 => 00000001
+n & mask ==> 
+00101101
+00000001
+--------
+00000001
+*/
+``````
+
+Clear all bits from i through 0 (inclusive).
+```
+boolean clearBitFromPosToZero(int n, int i) {
+    int mask = (-1 << (i + 1));
+    return n & mask;
+}
+
+/*
+n = 00101101
+i = 3
+
+mask => 11111111 => 11110000
+n & mask ==>
+00101101
+11110000
+--------
+00100000
+
+
+n = 00101101
+i = 1
+
+mask => 11111111 => 11111100
+n & mask ==> 
+00101101
+11111100
+--------
+00101100
+*/
+``````
+
+### Update bit
+
+1. Clear the bit in the position.
+2. Perform an OR with the desired bit shifted to the position.
+
+```
+boolean updateBitInPos(int n, int i, boolean bitIs1) {
+    int value = bitIs1 ? 1 : 0;
+    int mask = ~(1 << i);
+    return (n & mask) | (value << i);
+}
+
+/*
+n = 00101101
+i = 3
+value = 0
+
+mask => 00001000 => 11110111
+n & mask ==>
+00101101
+11110111
+--------
+00100101 (cleared the ith bit)
+00000000 (value << i)
+--------
+00100101 (bit set to 0)
+
+
+n = 00101101
+i = 3
+value = 1
+
+mask => 00001000 => 11110111
+n & mask ==>
+00101101
+11110111
+--------
+00100101 (cleared the ith bit)
+00001000 (value << i)
+--------
+00101101 (bit set to 1)
+*/
+``````
