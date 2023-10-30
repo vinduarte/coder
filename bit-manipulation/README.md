@@ -256,4 +256,13 @@ n & mask ==>
 --------
 00101101 (bit set to 1)
 */
-``````
+```
+
+### Get number of 1's
+
+This will basically look at the less significant bit at every call. Is it 1 (by comparing n & 1)? Then, sum + 1 and call the shifted n (to disconsider the current bit and move to the next).
+```
+int getNumberOf1sBits(int n) {
+    return n == 0 ? 0 : (n & 1) + getNumberOf1sBits(n >>> 1);
+}
+```
