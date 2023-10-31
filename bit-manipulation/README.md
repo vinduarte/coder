@@ -24,6 +24,7 @@
 - x is a power of 2 if x & (x - 1) == 0
 - x is a power of 4 if it is a power of 2 and (x - 1) % 3 == 0 (x - 1 is multiple of 3)
 - x ^ y ^ y = x ^ 0 = x
+- x ^ y = z, x ^ z = y
 
 - to get negative of x: (~x) + 1. 
 Example: 
